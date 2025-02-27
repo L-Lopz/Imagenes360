@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://pannellum.org/js/pannellum.js"></script>
+    <link rel="stylesheet" href="https://pannellum.org/css/pannellum.css">
+</head>
+<body>
+    <div id="panorama" style="width: 100%; height: 500px;"></div>
+    <div id="botones" style="margin-top: 10px;"></div>
+
+    <script>
+        const imagenes = [
+            "https://grupotypsa.sharepoint.com/:i:/s/BIMTMP/EfRagFpJZs5Msb9Mv47asMABux8jzVbAPoJTjoNt1T3zOw?e=T4Zle8",
+            "https://grupotypsa.sharepoint.com/:i:/s/BIMTMP/EU_Lv2J-45ZDpFcIgO8QL_gBoupLz4OUCnszzslojMcXXw?e=S7hEWM",
+        ];
+
+        const viewer = pannellum.viewer('panorama', {
+            "type": "equirectangular",
+            "panorama": imagenes[0],
+            "autoLoad": true,
+            "autoRotate": -2
+        });
+
+        const botones = document.getElementById("botones");
+        imagenes.forEach((img, index) => {
+            const btn = document.createElement("button");
+            btn.innerText = "Imagen " + (index + 1);
+            btn.onclick = () => viewer.loadScene({ "type": "equirectangular", "panorama": img });
+            botones.appendChild(btn);
+        });
+    </script>
+</body>
+</html>
+
+
